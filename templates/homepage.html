@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/homepage.css')}}"
+    />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="logo"><a href="{{url_for('homepage')}}">Farmbot</a></div>
+
+      <div class="links">
+        <ul>
+          <li><a href="{{url_for('chatbot')}}">Chatbot</a></li>
+
+          {% if current_user.is_authenticated %}
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+
+          {%else%}
+          <li><a href="{{url_for('login')}}">Login</a></li>
+          <li><a href="{{url_for('signup')}}">Signup</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div class="introduction">
+        <h1>
+          We're thrilled to present FarmBot, your personal farming companion
+          designed specifically for small-scale farmers here in Kenya. Whether
+          you're tending to a small plot or managing a diverse range of crops,
+          FarmBot is here to support you every step of the way with practical
+          advice and valuable insights
+        </h1>
+      </div>
+
+      <a href="{{url_for('chatbot')}}" class="try-button"
+        >TRY OUT OUR CHATBOT</a
+      >
+    </main>
+  </body>
+</html>

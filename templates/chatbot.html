@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot UI</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+  </head>
+  <body>
+    <div class="chatbot-container">
+      <div class="chatbot-header">
+        <h2>Chat with me</h2>
+      </div>
+      <div class="chat-history"></div>
+      <div class="message-input">
+        {{form.hidden_tag()}} {{form.message}} {{form.send}}
+        <!-- <input
+          type="text"
+          id="user-message"
+          placeholder="Type your message..."
+        />
+        <button id="button">Send</button> -->
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='js/bundle.js')}}"></script>
+  </body>
+</html>
