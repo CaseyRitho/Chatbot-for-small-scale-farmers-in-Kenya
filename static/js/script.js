@@ -61,6 +61,44 @@ var counties = [
   "West Pokot",
 ];
 
+const farmingWords = [
+  "crop",
+  "cropped",
+  "cropping",
+  "will crop",
+  "has cropped",
+  "had cropped",
+  "will have cropped",
+  "disease",
+  "diseased",
+  "diseasing",
+  "will disease",
+  "has diseased",
+  "had diseased",
+  "will have diseased",
+  "pest",
+  "pested",
+  "pesting",
+  "will pest",
+  "has pested",
+  "had pested",
+  "will have pested",
+  "farm",
+  "farmed",
+  "farming",
+  "will farm",
+  "has farmed",
+  "had farmed",
+  "will have farmed",
+  "plant",
+  "planted",
+  "planting",
+  "will plant",
+  "has planted",
+  "had planted",
+  "will have planted",
+];
+
 async function runCompletion(user_input) {
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -86,6 +124,7 @@ sendButton.addEventListener("click", async () => {
 
   var lowerCaseSentence = userMessage.toLowerCase();
   var lowerCaseCounties = counties.map((county) => county.toLowerCase());
+  var lowerCaseFarmWords = farmingWords.map((word) => word.toLowerCase());
 
   // Loop through each word in the counties array
   for (var i = 0; i < lowerCaseCounties.length; i++) {
@@ -99,6 +138,19 @@ sendButton.addEventListener("click", async () => {
       chatHistory.appendChild(botMessageElement);
 
       return;
+    }
+  }
+
+  for (var i = 0; i < lowerCaseFarmWords.length; i++) {
+    // Check if the word exists in the lowercase sentence
+    if (lowerCaseSentence.includes(lowerCaseFarmWords[i])) {
+      continue;
+    } else {
+      const botMessage = "The specified query does not exist";
+      const botMessageElement = document.createElement("div");
+      botMessageElement.classList.add("message", "bot-message");
+      botMessageElement.textContent = botMessage;
+      chatHistory.appendChild(botMessageElement);
     }
   }
 
