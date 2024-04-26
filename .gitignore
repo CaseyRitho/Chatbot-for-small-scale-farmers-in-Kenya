@@ -1,0 +1,5 @@
+node_modules/
+static/js/script.js
+static/js/budnle.js
+bundle.js
+bundler.js
